@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "userId": "benchANT",
+    "projectId": "newsletter",
+    "batchId": "ycsb",
+    "configurationId": "postgresql-16",
+    "configurationLabel": "postgresql-16",
+    "executions": 2,
+    "executionCounter": 2
+  },
+  "resourceProvider": {
+    "name": "TELEKOM",
+    "api": "OPENSTACK"
+  },
+  "dbmsDeployment": {
+    "dbmsType": "POSTGRESQL",
+    "operationType": "DBMS",
+    "version": "16",
+    "DBMS": {
+      "dataNodes": {
+        "numberOfNodes": 1,
+        "resource": {
+          "costs": {
+            "storageCosts": 0.12,
+            "vmCosts": 0.115
+          },
+          "openstackVm": {
+            "regionName": "eu-de",
+            "availabilityZone": "eu-de-02",
+            "image": "Standard_Ubuntu_20.04_latest",
+            "flavor": "s3.2xlarge.4",
+            "volumeSize": 200,
+            "volumeType": "SSD"
+          }
+        },
+        "replicationFactor": 1,
+        "memoryAllocation": 0.25,
+        "postgresqlConfiguration": {
+          "effectiveCacheSize": "24GB",
+          "maintenanceWorkMem": "2GB",
+          "checkpointCompletionTarget": 0.9,
+          "walBuffers": "16MB",
+          "defaultStatisticsTarget": 100,
+          "randomPageCost": 1.1,
+          "effectiveIoConcurrency": 200,
+          "workMemory": "41943kB",
+          "minWalSize": "1GB",
+          "maxWalSize": "4GB",
+          "maxWorkerProcesses": 8,
+          "maxParallelWorkersPerGather": 4,
+          "maxParallelWorkers": 8,
+          "maxParallelMaintenanceWorkers": 4
+        }
+      }
+    }
+  },
+  "benchmarkDeployment": {
+    "benchmarkNodes": {
+      "numberOfNodes": 1,
+      "resource": {
+        "openstackVm": {
+          "regionName": "eu-de",
+          "availabilityZone": "eu-de-02",
+          "image": "Standard_Ubuntu_20.04_latest",
+          "flavor": "s3.4xlarge.2",
+          "volumeSize": 50,
+          "volumeType": "SATA"
+        }
+      }
+    }
+  },
+  "benchmark": {
+    "id": "Read-Update",
+    "distribution": "YCSB",
+    "version": "0.17.0",
+    "ycsb": {
+      "executeLoadPhase": true,
+      "executeRunPhase": true,
+      "dbmsEndpoints": [],
+      "workload": {
+        "workloadType": "LOAD",
+        "workloadClass": "site.ycsb.workloads.CoreWorkload",
+        "maxExecutionTime": 1800,
+        "threadCount": 50,
+        "recordCount": 50000000,
+        "insertStart": 0,
+        "insertCount": 0,
+        "operations": 54000000,
+        "targetOps": 0,
+        "fieldCount": 10,
+        "fieldLength": 100,
+        "readAllFileds": true,
+        "readModifyWriteProportion": 0,
+        "requestdistribution": "ZIPFIAN",
+        "scanLengthDistribution": "UNIFORM",
+        "insertOrder": "ORDERED",
+        "readProportion": 0.5,
+        "updateProportion": 0.5,
+        "insertProportion": 0.0,
+        "scanProportion": 0.0,
+        "maxScanLength": 0,
+        "coreWorkloadInsertionRetryLimit": 3,
+        "coreWorkloadInsertionRetryInterval": 3,
+        "loadBatchSize": 10,
+        "runBatchSize": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+/binary/jdk-17/bin/java -XX:MaxRAMPercentage=85.0 -jar /binary/benchbase/postgresql/benchbase.jar -c /binary/benchbase/postgresql/config/postgres/sample_tpcc_config.xml -b tpcc --load=true --create=true --sample 10 --interval-monitor 1000 --directory /home/developer/results
+[INFO ] 2023-09-26 15:29:28,909 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+
+Benchmark:              TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration:          /binary/benchbase/postgresql/config/postgres/sample_tpcc_config.xml
+Type:                   POSTGRES
+Driver:                 org.postgresql.Driver
+URL:                    jdbc:postgresql://10.0.16.70:5432/benchdb?sslmode=disable&ApplicationName=tpcc&reWriteBatchedInserts=true
+Isolation:              TRANSACTION_SERIALIZABLE
+Batch Size:             1024
+Scale Factor:           100.0
+Terminals:              20
+New Connection Per Txn: false
+
+[INFO ] 2023-09-26 15:29:28,910 [main]  com.oltpbenchmark.DBWorkload main - ======================================================================
+[INFO ] 2023-09-26 15:29:28,940 [main]  com.oltpbenchmark.DBWorkload main - Creating new TPCC database...
+[INFO ] 2023-09-26 15:29:29,208 [main]  com.oltpbenchmark.DBWorkload main - Finished creating new TPCC database...
+[INFO ] 2023-09-26 15:29:29,351 [main]  com.oltpbenchmark.DBWorkload main - Loading data into TPCC database...
+[INFO ] 2023-09-26 15:29:29,354 [main]  com.oltpbenchmark.util.ThreadUtil runLoaderThreads - Creating a Thread Pool with a size of 16 to run 101 Loader Threads.  85 threads will be queued.
+[INFO ] 2023-09-26 15:37:19,982 [main]  com.oltpbenchmark.util.ThreadUtil runLoaderThreads - Finished executing 101 Loader Threads [time=470.63s]
+[INFO ] 2023-09-26 15:37:19,983 [main]  com.oltpbenchmark.DBWorkload main - Finished loading data into TPCC database...
+[INFO ] 2023-09-26 15:37:19,983 [main]  com.oltpbenchmark.DBWorkload main - Skipping benchmark workload execution

@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "userId": "benchANT",
+    "projectId": "newsletter",
+    "batchId": "tpc-c",
+    "configurationId": "postgresql-15",
+    "configurationLabel": "postgresql-15",
+    "executions": 1,
+    "executionCounter": 1
+  },
+  "resourceProvider": {
+    "name": "TELEKOM",
+    "api": "OPENSTACK"
+  },
+  "dbmsDeployment": {
+    "dbmsType": "POSTGRESQL",
+    "operationType": "DBMS",
+    "version": "15",
+    "DBMS": {
+      "dataNodes": {
+        "numberOfNodes": 1,
+        "resource": {
+          "costs": {
+            "storageCosts": 0.12,
+            "vmCosts": 0.115
+          },
+          "openstackVm": {
+            "regionName": "eu-de",
+            "availabilityZone": "eu-de-02",
+            "image": "Standard_Ubuntu_20.04_latest",
+            "flavor": "s3.2xlarge.4",
+            "volumeSize": 200,
+            "volumeType": "SSD"
+          }
+        },
+        "replicationFactor": 1,
+        "memoryAllocation": 0.25,
+        "postgresqlConfiguration": {
+          "effectiveCacheSize": "24GB",
+          "maintenanceWorkMem": "2GB",
+          "checkpointCompletionTarget": 0.9,
+          "walBuffers": "16MB",
+          "defaultStatisticsTarget": 100,
+          "randomPageCost": 1.1,
+          "effectiveIoConcurrency": 200,
+          "workMemory": "41943kB",
+          "minWalSize": "2GB",
+          "maxWalSize": "8GB",
+          "maxWorkerProcesses": 8,
+          "maxParallelWorkersPerGather": 4,
+          "maxParallelWorkers": 8,
+          "maxParallelMaintenanceWorkers": 4
+        }
+      }
+    }
+  },
+  "benchmarkDeployment": {
+    "benchmarkNodes": {
+      "numberOfNodes": 1,
+      "resource": {
+        "openstackVm": {
+          "regionName": "eu-de",
+          "availabilityZone": "eu-de-02",
+          "image": "Standard_Ubuntu_20.04_latest",
+          "flavor": "s3.4xlarge.2",
+          "volumeSize": 50,
+          "volumeType": "SATA"
+        }
+      }
+    }
+  },
+  "benchmark": {
+    "id": "tpc-c",
+    "distribution": "BENCHBASETPCC",
+    "version": "master",
+    "benchbaseTPCC": {
+      "executeLoadPhase": true,
+      "executeRunPhase": true,
+      "dbmsEndpoints": [],
+      "workload": {
+        "workloadPhase": "LOAD",
+        "runtime": 1800,
+        "terminals": 20,
+        "intervalMonitor": 1000,
+        "sample": 10,
+        "isolation": "TRANSACTION_SERIALIZABLE",
+        "batchSize": 1024,
+        "scaleFactor": 100.0
+      }
+    }
+  }
+}
